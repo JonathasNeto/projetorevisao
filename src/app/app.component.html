@@ -1,18 +1,39 @@
-<div class="form-group container">
+<div class="container" align="center">
+  <h1>Formulario Notas e Frequencia</h1>
   <hr>
   <h4>Turmas</h4>
-  <form ngForm name="cadastro" >
-    <div>
-      <select >
-        <option *ngFor=" let turma of turmas"   >
-          {{turma.titulo}}_____ {{turma.numero}}</option>        
+  <form #cadastro="ngForm" (submit)="salvar()">
+    <div class="form-group">
+      <select id="turma" name="turma" [(ngModel)]="turma">
+        <option *ngFor=" let item of turmas"  [value]="item.numero" >
+          {{item.titulo}}_____ {{item.numero}}</option>        
       </select>
     </div><br/>
     <h4>Alunos</h4>
-    <div>
-      <select id="alunos" name="alunos">
-        <option *ngFor="let aluno of listarAluno()">{{aluno.codigo}}-----{{aluno.nome}}</option>
+    <div class="form-group">
+      <select id="alunos" name="alunos" [(ngModel)]="codigo">
+        <option *ngFor="let aluno of listarAluno()" [value]="aluno.codigo">{{aluno.codigo}}-----{{aluno.nome}}</option>
       </select>
+    </div><br/>
+    <div class="form-group">
+      <label for="nota1">Nota 1: </label>
+      <input type="number" class="form-control" id="nota1" name="nota1" [(ngModel)]="nota1">
     </div>
-</form>
+    <br/>
+    <div class="form-group">
+      <label for="nota2">Nota 2: </label>
+      <input type="number" class="form-control" id="nota2" name="nota2" [(ngModel)]="nota2">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="frequencia">Frequencia: </label>
+      <input type="number" class="form-control" id="frequencia" name="frequencia" [(ngModel)]="frequencia">
+    </div>
+    <br/>
+    <hr>
+    <div>
+      <button  class="btn btn-primary mr-2" disabled="cadastro-invalid">Confirmar</button>
+      <button  class="btn btn-secondary" type="reset" >Limpar</button>
+    </div>
+  </form>
 </div>
